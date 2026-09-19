@@ -1,4 +1,4 @@
-# Asimov open robot money
+# Open robot
 
 
 <https://vimeo.com/showcase/5792761/video/319684031>
@@ -7,7 +7,7 @@ This was developed in openlab @ HSBC during a weekend hackathon
 
 ##### App Description
 
-Open Robot Money its integration between HSBC API, blockchain and robots. 
+Open Robot its integration between HSBC API, blockchain and robots. 
 To function a robot has to have assets in the bank account.
 
 #####1. Install multichain blockchain
