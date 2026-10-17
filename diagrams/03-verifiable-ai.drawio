@@ -1,0 +1,78 @@
+<mxfile host="Electron">
+  <diagram id="page1" name="3 Verifiable AI">
+    <mxGraphModel dx="1247" dy="979" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;" value="3 · Verifiable AI (zkML / TEE / optimistic)" vertex="1">
+          <mxGeometry height="40" width="1000" x="40" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="consumer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Consumer contract&lt;br&gt;(needs an AI result)" vertex="1">
+          <mxGeometry height="80" width="160" x="40" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="oracle" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Request / oracle&lt;br&gt;contract" vertex="1">
+          <mxGeometry height="80" width="160" x="300" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="node" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Off-chain AI node&lt;br&gt;runs the model" vertex="1">
+          <mxGeometry height="80" width="160" x="560" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="zk" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="zkML proof&lt;br&gt;(math proof of inference)" vertex="1">
+          <mxGeometry height="70" width="180" x="820" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="tee" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="TEE attestation&lt;br&gt;(SGX / Nitro enclave)" vertex="1">
+          <mxGeometry height="80" width="180" x="820" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="opt" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Optimistic claim&lt;br&gt;+ challenge window" vertex="1">
+          <mxGeometry height="80" width="180" x="820" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="chal" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Challengers&lt;br&gt;re-run the model" vertex="1">
+          <mxGeometry height="70" width="180" x="820" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="ver" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Verifier contract" vertex="1">
+          <mxGeometry height="80" width="160" x="1080" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;dashed=1;fontSize=12;" value="Smart contracts can&#39;t run an LLM (gas, determinism), so inference happens off-chain and the chain only checks a proof or a dispute.&lt;br&gt;&lt;br&gt;zkML: strongest guarantee, slow/expensive.&lt;br&gt;TEE: fast, trusts the hardware vendor.&lt;br&gt;Optimistic: cheap, needs honest challengers." vertex="1">
+          <mxGeometry height="150" width="700" x="40" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="consumer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="oracle" value="① request&lt;br&gt;(input hash)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="oracle" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="node" value="② job">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="node" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="zk" value="③ output +&lt;br&gt;proof">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="node" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="tee" value="③">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="node" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="opt" value="③">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="zk" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" target="ver" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="tee" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="ver" value="④ submit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="opt" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.8;entryDx=0;entryDy=0;" target="ver" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="opt" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="chal" value="can be&lt;br&gt;disputed">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="chal" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#b85450;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="ver" value="fraud proof&lt;br&gt;→ slash">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="ver" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="consumer" value="⑤ verified result (callback)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1160" y="80" />
+              <mxPoint x="120" y="80" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

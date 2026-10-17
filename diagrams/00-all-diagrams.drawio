@@ -1,0 +1,340 @@
+<mxfile host="Electron" pages="5">
+  <diagram id="page1" name="1 Agent payments (x402 + USDC)">
+    <mxGraphModel dx="1247" dy="979" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;" value="1 · Agent payments: x402 + Circle Wallets + USDC" vertex="1">
+          <mxGeometry height="40" width="1000" x="40" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="user" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="User / operator" vertex="1">
+          <mxGeometry height="60" width="220" x="40" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="agent" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="AI agent (LLM + tools)&lt;br&gt;LangChain / MCP / SDK" vertex="1">
+          <mxGeometry height="160" width="220" x="40" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="wallet" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Circle Wallet&lt;br&gt;(developer-controlled, holds USDC)" vertex="1">
+          <mxGeometry height="80" width="220" x="40" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="api" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Paywalled API / merchant&lt;br&gt;(x402-enabled server)" vertex="1">
+          <mxGeometry height="160" width="240" x="520" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="fac" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Facilitator / Circle Gateway&lt;br&gt;verifies + settles payments" vertex="1">
+          <mxGeometry height="80" width="240" x="520" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="chain" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fontSize=13;" value="Blockchain&lt;br&gt;(USDC on Base, Arc, ...)" vertex="1">
+          <mxGeometry height="100" width="180" x="900" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;dashed=1;fontSize=12;" value="Spending limits, allowlisted payees and per-call price caps live in the wallet layer - the LLM never sees the private key." vertex="1">
+          <mxGeometry height="60" width="720" x="40" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="agent" value="① task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="agent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" target="user" value="⑪ result">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="agent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.15;exitDx=0;exitDy=0;entryX=0;entryY=0.15;entryDx=0;entryDy=0;" target="api" value="② GET /resource">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0;exitY=0.38;exitDx=0;exitDy=0;entryX=1;entryY=0.38;entryDx=0;entryDy=0;" target="agent" value="③ 402 Payment Required&lt;br&gt;(price, payTo)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="agent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.62;exitDx=0;exitDy=0;entryX=0;entryY=0.62;entryDx=0;entryDy=0;" target="api" value="⑥ retry + X-PAYMENT header">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0;exitY=0.85;exitDx=0;exitDy=0;entryX=1;entryY=0.85;entryDx=0;entryDy=0;" target="agent" value="⑩ 200 OK + data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="agent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="wallet" value="④ sign request">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="wallet" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" target="agent" value="⑤ signed payload">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="fac" value="⑦ verify + settle">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="fac" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" target="api" value="⑨ settled">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="fac" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="chain" value="⑧ USDC transfer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page2" name="2 Agents acting on-chain">
+    <mxGraphModel dx="1247" dy="979" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;" value="2 · Agents acting on-chain (wallet tools + guardrails)" vertex="1">
+          <mxGeometry height="40" width="1000" x="40" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="untrusted" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;dashed=1;" value="Untrusted inputs&lt;br&gt;(web pages, token metadata, messages)" vertex="1">
+          <mxGeometry height="60" width="180" x="300" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="human" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Human approver&lt;br&gt;(multisig / confirmation)" vertex="1">
+          <mxGeometry height="60" width="200" x="920" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="operator" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Operator&lt;br&gt;sets goal + limits" vertex="1">
+          <mxGeometry height="100" width="160" x="40" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="agent" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="LLM agent" vertex="1">
+          <mxGeometry height="100" width="180" x="300" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="tool" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Tool layer&lt;br&gt;(MCP server / SDK)&lt;br&gt;read_state · swap · sign_tx" vertex="1">
+          <mxGeometry height="100" width="200" x="600" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="policy" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Policy engine&lt;br&gt;spend limits · allowlists&lt;br&gt;tx simulation checks" vertex="1">
+          <mxGeometry height="100" width="200" x="920" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="contracts" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Smart contracts&lt;br&gt;(DEXs, lending, DAOs)" vertex="1">
+          <mxGeometry height="100" width="180" x="300" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="rpc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="RPC node" vertex="1">
+          <mxGeometry height="80" width="200" x="600" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="signer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Signer&lt;br&gt;(MPC / smart account / HSM)" vertex="1">
+          <mxGeometry height="80" width="200" x="920" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;dashed=1;fontSize=12;" value="Guardrails matter because agents can be manipulated by prompt injection: keep keys out of the model, enforce limits in the policy engine, and require human approval for large or unusual transactions." vertex="1">
+          <mxGeometry height="60" width="1080" x="40" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="operator" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="agent" value="goal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="untrusted" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#b85450;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="agent" value="prompt-injection risk">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="agent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" target="tool" value="function call">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="tool" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;" target="agent" value="result">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="tool" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="policy" value="tx request">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="policy" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;startArrow=block;startFill=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="human" value="escalate if over limit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="policy" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="signer" value="approved tx">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="signer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="rpc" value="signed tx">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="rpc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="contracts" value="execute">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="tool" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;" target="rpc" value="read state">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="rpc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.7;exitY=0;exitDx=0;exitDy=0;entryX=0.7;entryY=1;entryDx=0;entryDy=0;" target="tool" value="receipts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page3" name="3 Verifiable AI">
+    <mxGraphModel dx="1247" dy="979" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;" value="3 · Verifiable AI (zkML / TEE / optimistic)" vertex="1">
+          <mxGeometry height="40" width="1000" x="40" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="consumer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Consumer contract&lt;br&gt;(needs an AI result)" vertex="1">
+          <mxGeometry height="80" width="160" x="40" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="oracle" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Request / oracle&lt;br&gt;contract" vertex="1">
+          <mxGeometry height="80" width="160" x="300" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="node" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Off-chain AI node&lt;br&gt;runs the model" vertex="1">
+          <mxGeometry height="80" width="160" x="560" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="zk" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="zkML proof&lt;br&gt;(math proof of inference)" vertex="1">
+          <mxGeometry height="70" width="180" x="820" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="tee" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="TEE attestation&lt;br&gt;(SGX / Nitro enclave)" vertex="1">
+          <mxGeometry height="80" width="180" x="820" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="opt" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Optimistic claim&lt;br&gt;+ challenge window" vertex="1">
+          <mxGeometry height="80" width="180" x="820" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="chal" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Challengers&lt;br&gt;re-run the model" vertex="1">
+          <mxGeometry height="70" width="180" x="820" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="ver" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Verifier contract" vertex="1">
+          <mxGeometry height="80" width="160" x="1080" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;dashed=1;fontSize=12;" value="Smart contracts can&#39;t run an LLM (gas, determinism), so inference happens off-chain and the chain only checks a proof or a dispute.&lt;br&gt;&lt;br&gt;zkML: strongest guarantee, slow/expensive.&lt;br&gt;TEE: fast, trusts the hardware vendor.&lt;br&gt;Optimistic: cheap, needs honest challengers." vertex="1">
+          <mxGeometry height="150" width="700" x="40" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="consumer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="oracle" value="① request&lt;br&gt;(input hash)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="oracle" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="node" value="② job">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="node" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="zk" value="③ output +&lt;br&gt;proof">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="node" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="tee" value="③">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="node" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="opt" value="③">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="zk" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" target="ver" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="tee" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="ver" value="④ submit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="opt" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.8;entryDx=0;entryDy=0;" target="ver" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="opt" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="chal" value="can be&lt;br&gt;disputed">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="chal" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#b85450;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="ver" value="fraud proof&lt;br&gt;→ slash">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="ver" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="consumer" value="⑤ verified result (callback)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1160" y="80" />
+              <mxPoint x="120" y="80" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page4" name="4 Decentralized compute markets">
+    <mxGraphModel dx="1247" dy="979" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;" value="4 · Decentralized compute &amp; data markets" vertex="1">
+          <mxGeometry height="40" width="1000" x="40" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="buyer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Buyer&lt;br&gt;(AI developer / agent)" vertex="1">
+          <mxGeometry height="100" width="160" x="40" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="mkt" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Marketplace +&lt;br&gt;escrow contract" vertex="1">
+          <mxGeometry height="100" width="180" x="320" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="gpu" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="GPU providers&lt;br&gt;(Render, Akash, io.net ...)" vertex="1">
+          <mxGeometry height="70" width="200" x="620" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="miners" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Model miners&lt;br&gt;(Bittensor subnets)" vertex="1">
+          <mxGeometry height="70" width="200" x="620" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="datap" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Data providers" vertex="1">
+          <mxGeometry height="70" width="200" x="620" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="val" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Validators&lt;br&gt;score quality / verify proofs" vertex="1">
+          <mxGeometry height="100" width="180" x="940" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;dashed=1;fontSize=12;" value="⑤ Escrow releases tokens to providers in proportion to validator scores; poor or fake work earns less or is slashed." vertex="1">
+          <mxGeometry height="60" width="700" x="40" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="buyer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" target="mkt" value="① post job +&lt;br&gt;lock tokens">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="mkt" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;" target="buyer" value="⑥ results /&lt;br&gt;model access">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="mkt" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="gpu" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="mkt" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="miners" value="② assign job">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="mkt" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="datap" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="gpu" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" target="val" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="miners" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="val" value="③ work + proof">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="datap" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.8;entryDx=0;entryDy=0;" target="val" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="val" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="mkt" value="④ scores / attestations">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1030" y="560" />
+              <mxPoint x="410" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page5" name="5 Agent identity and reputation">
+    <mxGraphModel dx="1247" dy="979" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;" value="5 · Agent identity &amp; reputation (on-chain registry)" vertex="1">
+          <mxGeometry height="40" width="1000" x="40" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="owner" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Agent owner&lt;br&gt;/ deployer" vertex="1">
+          <mxGeometry height="70" width="160" x="40" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="registry" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="On-chain agent registry&lt;br&gt;(agent ID / DID: key, endpoint,&lt;br&gt;capabilities, wallet)" vertex="1">
+          <mxGeometry height="100" width="220" x="400" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="validators" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Validators (optional)&lt;br&gt;re-run work / TEE attest" vertex="1">
+          <mxGeometry height="60" width="220" x="400" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="A" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Agent A&lt;br&gt;(client)" vertex="1">
+          <mxGeometry height="100" width="160" x="40" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="B" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Agent B&lt;br&gt;(service provider)" vertex="1">
+          <mxGeometry height="100" width="160" x="760" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="rep" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Reputation contract&lt;br&gt;(feedback attestations)" vertex="1">
+          <mxGeometry height="100" width="220" x="400" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="C" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Future counterparty&lt;br&gt;(agent C)" vertex="1">
+          <mxGeometry height="80" width="160" x="40" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;dashed=1;fontSize=12;" value="Goal: let agents verify who they are dealing with and how they have behaved before sending money or data." vertex="1">
+          <mxGeometry height="50" width="880" x="40" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="owner" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="registry" value="① register ID,&lt;br&gt;endpoint, wallet">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="owner" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="A" value="deploys + holds key">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="A" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" target="B" value="② request + agent ID">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="B" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;startArrow=block;startFill=1;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;" target="A" value="④ challenge nonce ↔ signature">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="B" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;startArrow=block;startFill=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="registry" value="③ resolve ID → key,&lt;br&gt;endpoint">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="validators" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="registry" value="⑦ validation&lt;br&gt;attestations">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="B" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="rep" value="⑤ post feedback&lt;br&gt;attestation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="C" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;fontColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="rep" value="⑥ read score before&lt;br&gt;transacting">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
