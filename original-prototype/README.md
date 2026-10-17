@@ -10,7 +10,9 @@ This was developed in openlab @ HSBC during a weekend hackathon
 Open Robot its integration between HSBC API, blockchain and robots. 
 To function a robot has to have assets in the bank account.
 
-#####1. Install multichain blockchain
+#####1. Install multichain blockchain 
+
+https://www.multichain.com/download-install/  
 
 #####2. Connecting to the blockchain
 multichaind asimov start
@@ -48,5 +50,4 @@ You can connect to this node using:
 multichaind asimov@openrobotmoney.org:6269
 
 Send an  email including your node address to grant you access and stream permissions
-
 
